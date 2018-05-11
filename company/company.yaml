@@ -1,0 +1,24 @@
+type: appointy.api.company
+config_version: 3
+http:
+    rules:
+        -
+            selector: appointy.company.Companies.GetCompany
+            get: /v1/companies
+        -
+            selector: appointy.company.Companies.AddCompany
+            post: /v1/companies
+            body: "*"
+        -
+            selector: appointy.company.Companies.ListCompanies
+            get: '/v1/companies/list'
+        -
+            selector: appointy.company.Companies.DeleteCompany
+            delete: '/v1/companies'
+        -
+            selector: appointy.company.Companies.UpdateCompany
+            put: '/v1/companies'
+            body: "*"
+        -
+            selector: appointy.company.Companies.GetBySlug
+            get: '/v1/companies/slug'

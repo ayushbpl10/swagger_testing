@@ -1,0 +1,24 @@
+type: appointy.api.group
+config_version: 3
+http:
+    rules:
+        -
+            selector: appointy.group.Groups.AddGroup
+            post: '/v1/groups'
+            body: "*"
+        -
+            selector: appointy.group.Groups.GetGroup
+            get: '/v1/groups'
+        -
+            selector: appointy.group.Groups.GetAllGroup
+            get: '/v1/groups/list'
+        -
+            selector: appointy.group.Groups.UpdateGroup
+            put: '/v1/groups'
+            body: "*"
+        -
+            selector: appointy.group.Groups.DeleteGroup
+            delete: '/v1/groups'
+        -
+            selector: appointy.group.Groups.GetBySlug
+            get: '/v1/groups/slug'

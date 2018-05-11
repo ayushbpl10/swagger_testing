@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package appointy.company;
+
+import "appointy/core/core.proto";
+import "google/protobuf/empty.proto";
+import "appointy/protobuf/address.proto";
+
+option go_package = "go.appointy.com/pb/company";
+
+service Companies {
+    rpc AddCompany (Company) returns (CompanyIdentifier) {
+    }
+
+    rpc GetCompany (CompanyIdentifier) returns (Company) {
+    }
+
+    rpc UpdateCompany (Company) returns (google.protobuf.Empty) {
+    }
+
+    rpc DeleteCompany (CompanyIdentifier) returns (google.protobuf.Empty) {
+    }
+
+    rpc ListCompanies (ListCompanyRequest) returns (ListCompanyResponse) {
+    }
+
+    rpc GetBySlug (GetBySlugReq) returns (Company){
+    }
+}
+
+message ListCompanyRequest {
+    string group_id = 1;
+}
+
+message ListCompanyResponse {
+    repeated Company companies = 1;
+}
+
+message CompanyIdentifier {
+    string group_id = 1;
+    string id = 2;
+}
+
+message Company {
+    appointy.core.GroupRoot base = 1;
+
+    string id = 2;
+    string title = 3;
+    string description = 4;
+    string logo_url = 5;
+
+    repeated string phone_numbers = 6;
+
+    appointy.protobuf.Address address = 7;
+
+    string slug = 8;
+}
+
+message GetBySlugReq{
+    string slug = 1;
+}

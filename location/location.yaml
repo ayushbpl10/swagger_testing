@@ -1,0 +1,24 @@
+type: appointy.api.location
+config_version: 3
+http:
+    rules:
+        -
+            selector: appointy.location.Locations.AddLocation
+            post: '/v1/locations'
+            body: "*"
+        -
+            selector: appointy.location.Locations.GetLocations
+            get: '/v1/locations'
+        -
+            selector: appointy.location.Locations.UpdateLocation
+            put: '/v1/locations'
+            body: "*"
+        -
+            selector: appointy.location.Locations.DeleteLocation
+            delete: '/v1/locations'
+        -
+            selector: appointy.location.Locations.ListLocations
+            get: '/v1/locations/list'
+        -
+            selector: appointy.location.Locations.GetBySlug
+            get: '/v1/locations/slug'

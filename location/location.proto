@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package appointy.location;
+
+import "google/protobuf/empty.proto";
+import "appointy/core/core.proto";
+import "appointy/protobuf/gallery.proto";
+import "appointy/protobuf/address.proto";
+
+option go_package = "go.appointy.com/pb/location";
+
+service Locations {
+    rpc AddLocation (Location) returns (LocationIdentifier) {
+    }
+
+    rpc GetLocations (LocationIdentifier) returns (Location) {
+    }
+
+    rpc UpdateLocation (Location) returns (google.protobuf.Empty) {
+    }
+
+    rpc DeleteLocation (LocationIdentifier) returns (google.protobuf.Empty) {
+    }
+
+    rpc ListLocations (appointy.core.CompanyRoot) returns (LocationsList) {
+    }
+
+    rpc GetBySlug (GetBySlugReq) returns (Location){
+    }
+}
+
+message Location {
+    appointy.core.CompanyRoot base = 1;
+
+    string id = 2;
+    string title = 3;
+
+    string description = 4;
+    string logo_url = 5;
+
+    repeated string phone_numbers = 6;
+
+    appointy.protobuf.Address address = 7;
+    appointy.protobuf.Gallery gallery_images = 8;
+
+    string slug = 9;
+}
+
+message LocationIdentifier {
+    string group_id = 1;
+    string company_id = 2;
+    string id = 3;
+}
+
+message LocationsList {
+    repeated Location locations = 1;
+}
+
+message GetBySlugReq{
+    string slug = 1;
+}

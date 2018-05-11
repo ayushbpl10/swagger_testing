@@ -1,0 +1,314 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "location.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/locations": {
+      "get": {
+        "operationId": "GetLocations",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/locationLocation"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "company_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteLocation",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "company_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      },
+      "post": {
+        "operationId": "AddLocation",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/locationLocationIdentifier"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/locationLocation"
+            }
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateLocation",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/locationLocation"
+            }
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    },
+    "/v1/locations/list": {
+      "get": {
+        "operationId": "ListLocations",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/locationLocationsList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "company_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    },
+    "/v1/locations/slug": {
+      "get": {
+        "operationId": "GetBySlug",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/locationLocation"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Locations"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "coreCompanyRoot": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string"
+        },
+        "company_id": {
+          "type": "string"
+        }
+      }
+    },
+    "locationLocation": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "$ref": "#/definitions/coreCompanyRoot"
+        },
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "phone_numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "address": {
+          "$ref": "#/definitions/protobufAddress"
+        },
+        "gallery_images": {
+          "$ref": "#/definitions/protobufGallery"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "locationLocationIdentifier": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "string"
+        },
+        "company_id": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "locationLocationsList": {
+      "type": "object",
+      "properties": {
+        "locations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/locationLocation"
+          }
+        }
+      }
+    },
+    "protobufAddress": {
+      "type": "object",
+      "properties": {
+        "country_code": {
+          "type": "string"
+        },
+        "locality": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "po_box_number": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "street_address": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufEmpty": {
+      "type": "object",
+      "description": "service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }\n\nThe JSON representation for `Empty` is empty JSON object `{}`.",
+      "title": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:"
+    },
+    "protobufGallery": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufGalleryItem"
+          }
+        }
+      }
+    },
+    "protobufGalleryItem": {
+      "type": "object",
+      "properties": {
+        "thumb_image": {
+          "type": "string"
+        },
+        "large_image": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
